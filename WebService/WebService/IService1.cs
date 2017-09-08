@@ -12,6 +12,8 @@ namespace WebService
 	[ServiceContract]
 	public interface IService1
 	{
+		[OperationContract]
+		string DefaultRoute();
 
 		[OperationContract]
 		string GetData(int value);

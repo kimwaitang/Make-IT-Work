@@ -15,6 +15,12 @@ namespace WebService
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
 	public class Service1 : IService1
 	{
+		[WebGet(UriTemplate = "", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare)]
+		public string DefaultRoute()
+		{
+			return "Endpoint not found. Please see the /help page to view the endpoints";
+		}
+
 		public string GetData(int value)
 		{
 			return string.Format("You entered: {0}", value);
