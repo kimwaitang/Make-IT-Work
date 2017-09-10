@@ -7,10 +7,10 @@ using System.Data;
 namespace UnitTestProject1
 {
     [TestClass]
-    public class UnitTest2
+    public class TestWithMockData
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestMockConnection()
         {
             Mock<IDbConnection> connection = new Mock<IDbConnection>();
             connection.Setup(x => x.Open()).Callback(this.Open);
