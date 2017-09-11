@@ -1,2 +1,2 @@
 # Make-IT-Work
-Project voor Make IT Work
+Dit bevat praktijk projecten voor Make IT Work.
