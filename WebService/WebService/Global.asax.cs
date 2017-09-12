@@ -16,12 +16,7 @@ namespace WebService
 		{
 			RouteTable.Routes.Add(new ServiceRoute("", new WebServiceHostFactory(), typeof(Service1)));
 		}
-
-		protected void Session_Start(object sender, EventArgs e)
-		{
-
-		}
-
+		
 		protected void Application_BeginRequest(object sender, EventArgs e)
 		{
 
@@ -36,12 +31,7 @@ namespace WebService
 		{
 
 		}
-
-		protected void Session_End(object sender, EventArgs e)
-		{
-
-		}
-
+		
 		protected void Application_End(object sender, EventArgs e)
 		{
 

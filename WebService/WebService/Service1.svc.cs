@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace WebService
 {
@@ -15,6 +21,16 @@ namespace WebService
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
 	public class Service1 : IService1
 	{
+		public void FormData(Stream stream)
+		{
+			StreamContent streamContent = new StreamContent(stream);
+			streamContent.Headers.ContentType = MediaTypeHeaderValue.Parse(WebOperationContext.Current.IncomingRequest.ContentType);
+			var task = Task.Run(() => streamContent.ReadAsMultipartAsync());
+			task.Wait();
+			var httpContents = from contents in task.Result.Contents where !string.IsNullOrEmpty(contents.Headers.ContentDisposition.FileName) select contents;
+			Debug.WriteLine(httpContents.Skip(1).First().Headers.ContentDisposition);
+		}
+
 		public string GetData(int value)
 		{
 			return string.Format("You entered: {0}", value);

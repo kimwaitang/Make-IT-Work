@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -12,6 +13,9 @@ namespace WebService
 	[ServiceContract]
 	public interface IService1
 	{
+		[OperationContract]
+		void FormData(Stream stream);
+
 		[OperationContract]
 		string GetData(int value);
 
